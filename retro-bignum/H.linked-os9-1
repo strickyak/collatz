@@ -1,0 +1,28 @@
+ 2023  - lwasm --usage
+ 2024  - lwasm --format=os9 collatz.asm -o'collatz.os9' 
+ 2025  find ~/modoc/coco-shelf/nitros9/ -name defsfile
+ 2026  m /home/strick/modoc/coco-shelf/nitros9/level3/coco3/cmds/defsfile 
+ 2027  - lwasm --format=os9 collatz.asm -o'collatz.os9'  -I'/home/strick/modoc/coco-shelf/nitros9/level3/coco3/cmds/'
+ 2028  find ~/modoc/coco-shelf/nitros9/ -name os9.d
+ 2029  - lwasm --format=os9 collatz.asm -o'collatz.os9'  -I'/home/strick/modoc/coco-shelf/nitros9/level3/coco3/cmds/' -I'/home/strick/modoc/coco-shelf/nitros9/defs/' 
+ 2030  make -B collatz.s  && P=$PWD ; ( cd /sy/gcc6809pic ; go run ../gcc6809pic/  $P/collatz.s )  > collatz.asm 2>collatz.err ;  cat -n collatz.err 
+ 2031  - lwasm --format=os9 collatz.asm -o'collatz.os9'  -I'/home/strick/modoc/coco-shelf/nitros9/level3/coco3/cmds/' -I'/home/strick/modoc/coco-shelf/nitros9/defs/' 
+ 2032  n /home/strick/modoc/coco-shelf/nitros9/level3/coco3/cmds/defsfile 
+ 2033  find ~/modoc/coco-shelf/nitros9/ -name defsfile | xargs  wc
+ 2034  cat /home/strick/modoc/coco-shelf/nitros9/level1/coco1/defsfile
+ 2035  r PRAG ~/modoc/coco-shelf/nekotos/
+ 2036  ASM_PRAGMATA=' --pragma=undefextern --pragma=cescapes --pragma=importundefexport'
+ 2037  - lwasm $ASM_PRAGMATA --format=os9 collatz.asm -o'collatz.os9'  -I'/home/strick/modoc/coco-shelf/nitros9/level3/coco3/cmds/' -I'/home/strick/modoc/coco-shelf/nitros9/defs/' 
+ 2038  touch defsfile
+ 2039  - lwasm $ASM_PRAGMATA --format=os9 collatz.asm -o'collatz.os9'  -I.  
+ 2040  m ~/modoc/coco-shelf/nitros9/defs/os9.d 
+ 2041  r -i pragma ~/modoc/coco-shelf/nitros9/
+ 2042  ASM_PRAGMATA=' --pragma=undefextern --pragma=cescapes --pragma=importundefexport --pragma=condundefzero '
+ 2043  - lwasm $ASM_PRAGMATA --format=os9 collatz.asm -o'collatz.os9'  -I.  
+ 2044  hhh
+ 2045  - lwasm $ASM_PRAGMATA --format=os9 collatz.asm -o'collatz.os9'  -I.  -I'/home/strick/modoc/coco-shelf/nitros9/defs/'
+ 2046  echo '  use os9.d' > defsfile 
+ 2047  - lwasm $ASM_PRAGMATA --format=os9 collatz.asm -o'collatz.os9'  -I.  -I'/home/strick/modoc/coco-shelf/nitros9/defs/'
+ 2048  ll -t
+ 2049  m collatz.os9.list
+ 2050  history 99 > H.linked-os9-1

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "format.h"
 #include "bin.c"
 #include "dec.c"
 
