@@ -1,3 +1,13 @@
+*.un~
+*.list
+*.map
+*.err
+*.s
+*.s.asm
+*.os9
+_*
+,*
+
 # Prerequisites
 *.d
 

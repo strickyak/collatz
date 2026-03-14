@@ -9,21 +9,29 @@ typedef unsigned char gbool;
 typedef unsigned char gbyte;
 typedef unsigned int gword;
 
-#if   defined(__M6809__)
+#if  defined(__M6809__)
 
 #include <stdarg.h>
 
+void printf(const char* format, ...);
+void putchar(int);
+void putchar_raw(int);
+
 #define assert(B)  assert_6809(B,__FILE__,__LINE__)
 void assert_6809(bool b, const char* s, uint n) {
-    printf("\nASSERT FAILS at %s:%d\n");
+    if (b) return;
+    printf("\nASSERT FAILS at %s:%d\n", s, n);
     while (1) {}
 }
 
 void putchar_raw(int ch) {
-    *(volatile byte*)0xFF04 = (byte)ch;
+    *(volatile byte*)0xFF07 = (byte)ch;
+}
+void putchar(int ch) {
+    *(volatile byte*)0xFF07 = (byte)ch;
 }
 
-#elif defined(unix)
+#elif  defined(unix)
 
 #include <assert.h>
 #include <stdio.h>

@@ -5,6 +5,7 @@ typedef struct bin {
 } *Bin;
 
 void Small(Bin z, uint a) {
+    //printf(" [small %d.] ", a);
     assert(a < 256);
     z->size = (a > 0);
     z->guts[0] = (byte)a;
@@ -12,15 +13,32 @@ void Small(Bin z, uint a) {
 
 bool EqSmall(Bin z, uint a) {
     if (z->size == 0) return (a==0);
+#if BUGGGGG
     for (byte i = 0; i < z->size; i++) {
         if (z->guts[i] != (i == 0 ? a : 0)) return false;
     }
+#else
+    if (z->guts[0] != 1) return false;
+    for (byte i = 1; i < z->size; i++) {
+        if (z->guts[i] != 0) return false;
+    }
+#endif
     return true;
 }
 
 bool IsEven(Bin a) {
+    //printf(" [even? %d] ", (a->size == 0));
     if (a->size == 0) return true;
     return (a->guts[0] & 1) == 0;
+}
+
+void Dup(Bin z, Bin a) {
+    //printf(" [d] ");
+    byte sz = a->size;
+    z->size = sz;
+    for (byte i = 0; i < sz; i++) {
+        z->guts[i] = a->guts[i];
+    }
 }
 
 #define MAX(X,Y) ((X) > (Y) ? (X) : (Y))
@@ -28,6 +46,7 @@ bool IsEven(Bin a) {
 #define CHECK(BIN) assert(BIN->size <= MAX_OCTETS)
 
 void Add(Bin z, Bin a, Bin b) {
+    //printf(" [a] ");
     byte max = MAX(a->size,b->size);
     byte carry = 0;
     for (byte i = 0; i < max; i++) {
@@ -44,6 +63,7 @@ void Add(Bin z, Bin a, Bin b) {
 }
 
 int Cmp(Bin a, Bin b) {
+    //printf(" [c] ");
     byte max = MAX(a->size,b->size);
     if (max==0) return 0;
 
@@ -59,6 +79,7 @@ int Cmp(Bin a, Bin b) {
 }
 
 void Halve(Bin z, Bin a) {
+    //printf(" [h] ");
     z->size = a->size;
     if (a->size==0) return;
 
@@ -76,7 +97,6 @@ void Halve(Bin z, Bin a) {
 }
 
 void Print(Bin a) {
-    // printf("[%x# %x %x %x]", a->size, a->guts[2], a->guts[1], a->guts[0]);
     printf("$");
     if (!a->size) {
         printf("0 ");

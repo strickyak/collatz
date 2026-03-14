@@ -1,6 +1,8 @@
 #ifndef _NEKOTOS_LIB_FORMAT_H_
 #define _NEKOTOS_LIB_FORMAT_H_
 
+#if  defined(__M6809__)
+
 #include "types.h"
 
 #define TEXT_STR_MAX 80
@@ -107,14 +109,15 @@ char* Sprintf(char* p, const char* format, ...) {
   return Vprintf(p, format, ap);
 }
 
-char* printf(const char* format, ...) {
-  static buffer[256];
+void printf(const char* format, ...) {
+  static char buffer[256];
   va_list ap;
   va_start(ap, format);
-  Sprintf(buffer, format, ap);
+  Vprintf(buffer, format, ap);
   for (const char* p = buffer; *p; p++) {
       putchar_raw(*p);
   }
 }
 
+#endif  // __M6809__
 #endif  // _NEKOTOS_LIB_FORMAT_H_

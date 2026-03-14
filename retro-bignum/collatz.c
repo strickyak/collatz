@@ -18,10 +18,10 @@ uint max_steps;
 void Traverse(Bin q, Bin one) {
     static struct bin a;
     static struct bin temp;
-    a = *q; // copy question to starting point a
+    Dup(&a, q);
 
     if (Cmp(&a, &biggest) > 0) {
-            biggest = a;
+            Dup(&biggest, &a);
             printf("biggest  ");
     }
 
@@ -31,7 +31,7 @@ void Traverse(Bin q, Bin one) {
 
         if (IsEven(&a)) {
             Halve(&temp, &a); // half
-            a = temp;
+            Dup(&a , &temp);
         } else {
             Add(&temp, &a, &a);  // double
             Add(&a, &a, &temp); // triple
@@ -40,7 +40,7 @@ void Traverse(Bin q, Bin one) {
         PrintBinAsDec(&a);
 
         if (Cmp(&a, &biggest) > 0) {
-            biggest = a;
+            Dup(&biggest, &a);
             printf(" biggest  ");
         }
 
@@ -53,20 +53,24 @@ void Traverse(Bin q, Bin one) {
     }
 }
 
-int main(int argc, char *argv[]) {
+int main(char* params, int params_len, char* memory) {
     static struct bin one;
     Small(&one, 1);
 
+#if 0
     if (argc > 1) {
         q.size = argc-1;
         for (byte i = 0; i < q.size; i++) {
             q.guts[i] = atoi(argv[i+1]);
         }
     } else {
+#endif
         Small(&q, 1);
+#if 0
     }
+#endif
     while(1) {
-        printf("Questioning "); PrintBinAsDec(&q); printf(":  ");
+        printf("Try "); PrintBinAsDec(&q); printf(":  ");
 
         Traverse(&q, &one);
         Add(&q, &q, &one);
