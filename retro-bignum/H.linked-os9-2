@@ -1,0 +1,20 @@
+ 2034  make -B
+ 2035  ls
+ 2036  vi types.h 
+ 2037  make -B
+ 2038  vi  types.h 
+ 2039  make -B
+ 2040  du /c/gomar/
+ 2041  du /c/gomar/*
+ 2042  ff /c/ -type f -name \*borges.*go 
+ 2043  ff /c/ -type f -name \*list.*go 
+ 2044  ff /c/ -type f -name *.go -print0 | xargs -0 grep borges
+ 2045  go run /c/borges-saver/borges-saver.go -help
+ 2046  go run /c/borges-saver/borges-saver.go -outdir ~/borges/ . 
+ 2047  vi Makefile 
+ 2048  vi collatz.*list
+ 2049  vi Makefile 
+ 2050  cp collatz.os9.list noname.list 
+ 2051  go run /c/borges-saver/borges-saver.go -outdir ~/borges/ . 
+ 2052  vi /c/borges-saver/borges-saver.go 
+ 2053  history 20 > H.linked-os9-2
